@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Slot>
+@{
+    ViewData["Title"] = "Index";
+    TempData["Id"] = TempData["Id"];
+    Layout = "~/Views/Shared/_EmpLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <h1 class="text-secondary">Appointments</h1>
+    </div>
+    <div class="col text-end my-auto">
+        <a class="btn btn-danger mx-1" asp-controller="Emp" asp-action="Logout" >Logout</a>
+    </div>
+</div>
+
+
+<hr />
+
+@foreach (var item in Model)
+{
+        
+              <div class="card mb-4" style="width: 100%;">
+              <div class="card-body">
+                <p class="card-text text-decoration-none">
+                        @*Name: @Html.DisplayFor(modelItem => item.Donor.FirstName) @Html.DisplayFor(modelItem => item.Donor.LastName)<br>*@
+                        Cnic: @Html.DisplayFor(modelItem => item.Donor.Cnic)<br>
+                        Time: @Html.DisplayFor(modelItem => item.Time.TimeOfDay) - @Html.DisplayFor(modelItem => item.Time.AddMinutes(30).TimeOfDay)<br>
+
+                        <a class="btn btn-info my-3" style="width:150 px;" asp-controller="Emp" asp-action="CheckUp" asp-route-id="@item.Id">
+                               Check Up
+                        </a>
+                </p>
+              </div>
+            </div>
+        
+}
+

@@ -1,0 +1,92 @@
+﻿@model Donor
+@{
+    ViewData["Title"] = "Register";
+}
+
+@*<div class="d-flex justify-content-center align-items-center">*@
+    <form method="post">
+    <div class="container-sm">
+        <div class="mb-3">
+            <label class="form-label" asp-for="FirstName"></label>
+            <input type="text" class="form-control" asp-for="FirstName" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" asp-for="LastName"></label>
+            <input type="text" class="form-control" asp-for="LastName">
+            <span asp-validation-for="LastName" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" asp-for="Cnic"></label>
+            <input type="text" class="form-control" asp-for="Cnic">
+            <span asp-validation-for="Cnic" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" asp-for="Email"></label>
+            <input type="email" class="form-control" asp-for="Email" aria-describedby="emailHelp">
+            <span asp-validation-for="Email" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" asp-for="Password"></label>
+            <input type="password" class="form-control" asp-for="Password">
+            <span asp-validation-for="Password" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" asp-for="Address"></label>
+            <input type="text" class="form-control" asp-for="Address">
+            <span asp-validation-for="Address" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" asp-for="Area.Name"></label>
+            @*<input type="text" class="form-control" asp-for="Area.Name">*@
+            <select asp-for="@Model.Area.Name" class="form-select">
+                <option selected>Select Area</option>
+                <option value="Gulzar-e-Hijri">Gulzar-e-Hijri</option>
+                <option value="Gulshan-E-Iqbal">Gulshan-E-Iqbal</option>
+                <option value="Rawal Chowk">Rawal Chowk</option>
+                <option value="F-7 Markaz">F-7 Markaz</option>
+                <option value="C-10">C-10</option>
+                <option value="Maymar">Maymar</option>
+                <option value="Model Colony">Model Colony</option>
+                <option value="Anarkali">Anarkali</option>
+                <option value="Qissa khwani bazaar">Qissa khwani bazaar</option>
+                <option value="Chowk Yadgaar">Chowk Yadgaar</option>
+            </select>
+            <span asp-validation-for="Area.Name" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" asp-for="Area.City"></label>
+            @*<input type="text" class="form-control" asp-for="Area.City">*@
+            <select asp-for="@Model.Area.City" class="form-select">
+            <option selected>Select City</option>
+            <option value="Karachi">Karachi</option>
+            <option value="Lahore">Lahore</option>
+            <option value="Islamabad">Islamabad</option>
+            <option value="Peshawar">Peshawar</option>
+        </select>
+            <span asp-validation-for="Area.City" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" asp-for="Area.Province"></label>
+            @*<input type="text" class="form-control" asp-for="Area.Province">*@
+            <select asp-for="@Model.Area.Province" class="form-select">
+                <option selected>Select Province</option>
+                <option value="Sindh">Sindh</option>
+                <option value="Punjab">Punjab</option>
+                <option value="KPK">KPK</option>
+            </select>
+            <span asp-validation-for="Area.Province" class="text-danger"></span>
+          </div>
+          
+          <div asp-validation-summary="All"></div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+@*</div>*@
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

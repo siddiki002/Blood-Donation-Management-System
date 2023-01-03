@@ -1,0 +1,65 @@
+﻿@model List<Slot>
+@{
+    ViewData["Title"] = "DonateSlot";
+    TempData["Id"] = TempData["Id"];
+    TempData["CampId"] = TempData["CampId"];
+    DateTime date = Convert.ToDateTime(TempData["Date"]);
+    Layout = "~/Views/Shared/_DonorLayout.cshtml";
+}
+
+<partial  name="_Notification" />
+
+<div class="row">
+    <div class="col">
+        <h1 class="text-secondary">Slots Available</h1>
+    </div>
+    <div class="col text-end my-auto">
+        <form method="post">
+        <input class="form-control" type="date" id="date" name="date" style="width: 200px;display:inline-block;" value="@date.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+        <button type="submit" formaction="@Url.Action("SlotDate")" formmethod="post" class="btn btn-primary" style="width: 100px;display:inline-block;">
+            Search
+        </button>
+        </form>
+    </div>
+</div>
+
+<hr />
+
+<div class="text-center" style="width: 100px;">
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th style="width:70%" class="text-center">
+                Time
+            </th>
+            <th style="width:30%" class="text-center">
+                
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <form method="post" asp-controller="Donor" asp-action="DonateSlot">
+                    <input type="datetime" name="date" value="@obj.Date" style="display: none;">
+                    <input type="number" name="Campid" value="@obj.CampId" style="display: none;">
+                    <input type="number" name="bed" value="@obj.bedno" style="display: none;">
+                    <input type="datetime" name="time" value="@obj.Time" style="display: none;">                
+                <tr>
+                    <td style="width:70%" class="text-center my-auto">
+                        @obj.Time.TimeOfDay
+                    </td>
+                    <td style="width:30%" class="text-center my-auto">
+                        <button class="btn btn-primary" style="width: 150px;">
+                            Book
+                        </button>
+                    </td>
+                </tr>
+            </form>
+        }
+    </tbody>
+</table>
+
+</div>

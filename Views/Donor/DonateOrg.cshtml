@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BloodCamp>
+@{
+    ViewData["Title"] = "Index";
+    TempData["Id"] = TempData["Id"];
+    TempData["Date"] = DateTime.Now.Date.ToString();
+    Layout = "~/Views/Shared/_DonorLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <h1 class="text-secondary">Organizations</h1>
+    </div>
+</div>
+
+
+<hr />
+
+@foreach(var item in Model){
+        <a class="text-reset text-decoration-none" asp-controller="Donor" asp-action="DonateSlot" asp-route-id="@item.Id">
+          <div class="card mb-4" style="width: 100%;">
+          <div class="card-body">
+                <h5 class="card-title text-decoration-underline">@Html.DisplayFor(modelItem => item.Organization.Name)</h5>
+                <p class="card-text text-decoration-none">
+                    Address: @Html.DisplayFor(modelItem => item.Organization.Address)<br>
+                    Area: @Html.DisplayFor(modelItem => item.Area.Name)<br>
+                    City: @Html.DisplayFor(modelItem => item.Area.City)<br>
+                    Province: @Html.DisplayFor(modelItem => item.Area.Province)<br>
+            </p>
+          </div>
+        </div>
+    </a>
+}
+

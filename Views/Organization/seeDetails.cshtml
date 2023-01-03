@@ -1,0 +1,62 @@
+﻿@model BloodCamp
+
+<div class="p-5 my-4 bg-light text-black">
+    <h1 class="display-4">Start Time</h1>
+    <h1 class="display-6">@Model.StartTime</h1>
+    <h1 class="display-4">End Time</h1>
+    <h1 class="display-6">@Model.EndTime</h1>
+    <h1 class="display-4">Beds</h1>
+    <h1 class="display-6">@Model.beds</h1>
+</div>
+<table class="table table-bordered table-secondary">
+    <thead>
+        <tr>
+            <td style="width:16%">
+                Time
+            </td>
+            <td style="width:16%">
+                Date
+            </td>
+            <td style="width:16%">
+                Bed No
+            </td>
+            <td style="width:16%">
+                Can Donate
+            </td>
+            <td style="width:16%">
+                Blood Camp
+            </td>
+            <td style="width:16%">
+                Donor
+            </td>
+        </tr>
+    </thead>
+
+@foreach(var obj in Model.Slots)
+{
+        <tbody>
+            <tr>
+                <td style="width:16%">
+                    @obj.Time
+                </td>
+                <td style="width:16%">
+                    @obj.Date
+                </td>
+                <td style="width:16%">
+                    @obj.bedno
+                </td>
+                <td style="width:16%">
+                    @obj.CanDonate
+                </td>
+                <td style="width:16%">
+                    @obj.BloodCamp.Area.Name
+                </td>
+                <td style="width:16%">
+                    @obj.Donor.FirstName
+                </td>
+            </tr>
+            
+        </tbody>
+ }
+ </table>
+<a class="btn btn-secondary" asp-controller="Organization" asp-action="viewOrg" asp-route-id="@Model.OrgCode">Return back</a>

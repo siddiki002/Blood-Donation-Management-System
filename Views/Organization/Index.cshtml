@@ -1,0 +1,121 @@
+﻿@model Organization
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="col-12 text-end">
+    <a class="btn btn-primary" asp-controller="Organization" asp-action="Login">Logout</a>
+</div> 
+<div class="container p-5 my-5 bg-dark text-white">
+    <h1 class="display-4">Name</h1>
+    <h3 style="color:white"><b>@Model.Name</b></h3>
+    <br />
+    <h1 class="display-4">Description:</h1>
+    <p>@Model.Desc</p>
+    <br />
+    <h1 class="display-4">Address</h1>
+    <p>@Model.Address</p>
+</div>
+<div>
+    <div class="col-6">
+        <h1 class="display-5" style="color:black"><b>Employees</b></h1>
+        
+    </div>
+    <div class="col-12 text-end">
+        <a class="btn btn-primary" asp-controller="Organization" asp-action="Addemployee" asp-route-id="@Model.Id"> <i class="bi bi-plus-circle"></i> &nbsp; Add Employee</a>
+    </div>
+</div>
+
+<table class="table table-dark table-bordered">
+    <thead>
+        <tr>
+            <th style="width:50%">
+                Name
+            </th>
+            <th style="width:50%">
+                CNIC
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in @Model.Employees)
+        {
+            <tr>
+            <td style="width:20%">
+                @obj.FirstName
+            </td>
+                <td style="width:40%">
+                    @obj.Cnic
+                </td>
+            <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Organization" asp-action="EditEmployee" asp-route-id="@obj.Id"
+                        class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+                        <a asp-controller="Organization" asp-action="DeleteEmployee" asp-route-id="@obj.Id"
+                        class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+					</div>
+				</td>
+        </tr>
+        }
+        
+    </tbody>
+
+</table>
+<div>
+    <div class="col-6">
+        <h1 class="display-5" style="color:black"><b>Blood Camps</b></h1>
+        
+    </div>
+    <div class="col-12 text-end">
+        <a class="btn btn-primary" asp-controller="Organization" asp-action="AddCamp" asp-route-id="@Model.Id"> <i class="bi bi-plus-circle"></i> &nbsp; Add BloodCamps</a>
+    </div>
+</div>
+
+<table class="table table-primary table-hover table-bordered">
+    <thead>
+        <tr>
+            <th style="width:25%">
+                Start Time
+            </th>
+            <th style="width:25%">
+                End Time
+            </th>
+            <th style="width:25%">
+                Beds
+            </th>
+            <th style="width:25%">
+                See Details
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in @Model.BloodCamps)
+        {
+            <tr>
+                <td style="width:25%">
+                    @obj.StartTime
+                </td>
+                <td style="width:25%">
+                    @obj.EndTime
+                </td>
+                <td style="width:25%">
+                    @obj.beds
+                </td>
+                <td style="width:25%">
+                    <a class="btn btn-secondary" asp-controller="Organization" asp-action="seeDetails" asp-route-id="@obj.Id">Details</a>
+                </td>
+                <td>
+                        <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Organization" asp-action="EditCamp" asp-route-id="@obj.Id"
+                        class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+                        <a asp-controller="Organization" asp-action="DeleteCamp" asp-route-id="@obj.Id"
+                        class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+					</div>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

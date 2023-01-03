@@ -1,0 +1,47 @@
+﻿@model Slot
+@{
+    ViewData["Title"] = "CheckUp";
+    TempData["Id"] = TempData["Id"];
+    TempData["Slot"] = Model.Id;
+    Layout = "~/Views/Shared/_EmpLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <h1 class="text-secondary">Details</h1>
+    </div>
+    <div class="col text-end my-auto">
+        <a class="btn btn-primary" style="width: 100px;" asp-controller="Emp" asp-action="AcceptDonor" asp-route-id="@Model.Id">Accept</a>
+        <a class="btn btn-danger mx-1" style="width: 100px;" asp-controller="Emp" asp-action="RejectDonor" asp-route-id="@Model.Id">Reject</a>
+    </div>
+</div>
+
+<hr />
+
+<form>
+
+    <div>
+        <div>First Name</div>
+        <div class="form-control mb-3">@Model.Donor.FirstName</div>
+    </div>
+
+    <div>
+        <div>Last Name</div>
+        <div class="form-control mb-3">@Model.Donor.LastName</div>
+    </div>
+
+    <div>
+        <div>CNIC</div>
+        <div class="form-control mb-3">@Model.Donor.Cnic</div>
+    </div>
+
+    @if(Model.Donor.Slots.Count() > 0){
+        <div>
+            <div>Last Donated</div>
+            <div class="form-control mb-3">@Model.Donor.Slots.First().Date.ToString("dd-MM-yyyy")</div>
+        </div>
+
+        <a class="btn btn-primary" style="width: 100px;" asp-controller="Emp" asp-action="DonorHistory" asp-route-id="@Model.DonorId">History</a>
+    }
+
+</form>

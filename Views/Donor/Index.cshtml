@@ -1,0 +1,89 @@
+﻿@model Donor
+@{
+    ViewData["Title"] = "Index";
+    TempData["Id"] = Model.Id;
+    Layout = "~/Views/Shared/_DonorLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <h1 class="text-secondary">Welcome @Model.FirstName</h1>
+    </div>
+    <div class="col text-end my-auto">
+        <a class="btn btn-secondary" asp-controller="Donor" asp-action="EditInfo" asp-route-id="@Model.Id">Edit</a>
+        <a class="btn btn-danger mx-1" asp-controller="Donor" asp-action="Logout" >Logout</a>
+    </div>
+</div>
+
+
+<hr />
+
+<form>
+    <div>
+        <div>Email</div>
+        <div class="form-control mb-3">@Model.Email</div>
+    </div>
+
+    <div>
+        <div>CNIC</div>
+        <div class="form-control mb-3">@Model.Cnic</div>
+    </div>
+
+    <div>
+        <div>Address</div>
+        <div class="form-control mb-3">@Model.Address</div>
+    </div>
+
+    <div>
+        <div>Area Name</div>
+        <div class="form-control mb-3">@Model.Area.Name</div>
+    </div>
+
+    <div>
+        <div>City</div>
+        <div class="form-control mb-3">@Model.Area.City</div>
+    </div>
+
+    <div>
+        <div>Province</div>
+        <div class="form-control mb-3">@Model.Area.Province</div>
+    </div>
+
+    @if(Model.Slots.Count() > 0){
+        <div>
+            <div>Appointment</div>
+            <div class="form-control mb-3">@Model.Slots.First().Date.ToString("dd-MM-yyyy")  @Model.Slots.First().Time.TimeOfDay</div>
+        </div>
+
+        <div>
+            <div>Blood Camp</div>
+            <div class="form-control mb-3">@Model.Slots.First().BloodCamp.Organization.Name, @Model.Slots.First().BloodCamp.Area.Name, @Model.Slots.First().BloodCamp.Area.City, @Model.Slots.First().BloodCamp.Area.Province</div>
+        </div>
+
+        <div class="m-2">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Cancel Appointment
+                </button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cancel Appointment</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to Cancel the appointment.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    <a class="btn btn-danger" asp-controller="Donor" asp-action="DeleteSlot" asp-route-id="@Model.Slots.First().Id">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    }
+</form>
+

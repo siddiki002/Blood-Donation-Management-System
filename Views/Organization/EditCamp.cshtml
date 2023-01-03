@@ -1,0 +1,69 @@
+﻿@model BloodCamp
+
+<form method="post" asp-action="EditCamp">
+    <input asp-for="@Model.OrgCode" hidden />
+    <input asp-for="@Model.StartTime" hidden />
+    <div class="p-4 mt-3">
+        <div class="row pb-2">
+            <h2 class="text-white bg-dark">Edit Camp</h2>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Area.Name">Name of the Area</label>
+        @*<input asp-for="@Model.Area.Name" class="form-control" />*@
+        <select asp-for="@Model.Area.Name" class="form-select">
+            <option selected>@Model.Area.Name</option>
+            <option value="Gulzar-e-Hijri">Gulzar-e-Hijri</option>
+            <option value="Gulshan-E-Iqbal">Gulshan-E-Iqbal</option>
+            <option value="Rawal Chowk">Rawal Chowk</option>
+            <option value="F-7 Markaz">F-7 Markaz</option>
+            <option value="C-10">C-10</option>
+            <option value="Maymar">Maymar</option>
+            <option value="Model Colony">Model Colony</option>
+            <option value="Anarkali">Anarkali</option>
+            <option value="Qissa khwani bazaar">Qissa khwani bazaar</option>
+            <option value="Chowk Yadgaar">Chowk Yadgaar</option>
+        </select>
+        <span asp-validation-for="@Model.Area.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Area.City">City</label>
+        @*<input asp-for="@Model.Area.City" class="form-control" />*@
+        <select asp-for="@Model.Area.City" class="form-select">
+            <option selected>Select City</option>
+            <option value="Karachi">Karachi</option>
+            <option value="Lahore">Lahore</option>
+            <option value="Islamabad">Islamabad</option>
+            <option value="Peshawar">Peshawar</option>
+        </select>
+        <span asp-validation-for="@Model.Area.City" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Area.Province">Province</label>
+        @*<input asp-for="@Model.Area.Province" class="form-control" />*@
+         <select asp-for="@Model.Area.Province" class="form-select">
+            <option selected>@Model.Area.Province</option>
+            <option value="Sindh">Sindh</option>
+            <option value="Punjab">Punjab</option>
+            <option value="KPK">KPK</option>
+        </select>
+        <span asp-validation-for="@Model.Area.Province" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.StartTime">Start Time</label>
+        <input asp-for="@Model.StartTime" placeholder="YYYY-MM-DD" disabled class="form-control" />
+        <span asp-validation-for="@Model.StartTime" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.EndTime">End Time</label>
+        <input asp-for="@Model.EndTime" placeholder="YYYY-MM-DD" class="form-control" />
+        <span asp-validation-for="@Model.EndTime" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.beds">Beds</label>
+        <input asp-for="@Model.beds" class="form-control" />
+        <span asp-validation-for="@Model.beds" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Edit Camp</button>
+
+</form>

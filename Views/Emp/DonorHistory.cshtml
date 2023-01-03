@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BloodBag>
+@{
+    ViewData["Title"] = "Donor History";
+    TempData["Id"] = TempData["Id"];
+    Layout = "~/Views/Shared/_EmpLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <h1 class="text-secondary">History</h1>
+    </div>
+</div>
+
+<hr />
+
+@foreach (var item in Model){
+
+                  <div class="card mb-4" style="width: 100%;">
+                  <div class="card-body">
+                    <p class="card-text text-decoration-none">
+                            Date: @item.Slot.Date.ToString("dd-MM-yyyy")<br><br>
+                            If any Diseases Diagnosed:
+                            <ul>
+                                @foreach(var dis in item.TestedBags){
+                                    <li>@dis.Disease.Name</li>
+                                }
+                            </ul>
+                    </p>
+                  </div>
+                </div>
+
+}
+
+<div class="row">
+    <div class="col">
+        <a asp-controller="Emp" asp-action="CheckUp" asp-route-id="@TempData["Slot"]" class="btn btn-danger" style="width: 100px;">
+            Back
+        </a>
+    </div>
+</div>

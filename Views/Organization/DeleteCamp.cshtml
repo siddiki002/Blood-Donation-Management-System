@@ -1,0 +1,42 @@
+﻿@model BloodCamp
+
+<form method="post" asp-action="DeleteCamp">
+    <input asp-for="@Model.OrgCode" hidden />
+    <div class="p-4 mt-3">
+        <div class="row pb-2">
+            <h2 class="text-white bg-dark">Delete Camp</h2>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Area.Name">Name of the Area</label>
+        <input asp-for="@Model.Area.Name" disabled class="form-control" />
+        <span asp-validation-for="@Model.Area.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Area.City">City</label>
+        <input asp-for="@Model.Area.City" disabled class="form-control" />
+        <span asp-validation-for="@Model.Area.City" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Area.Province">Province</label>
+        <input asp-for="@Model.Area.Province" disabled class="form-control" />
+        <span asp-validation-for="@Model.Area.Province" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.StartTime">Start Time</label>
+        <input asp-for="@Model.StartTime" placeholder="YYYY-MM-DD" disabled class="form-control" />
+        <span asp-validation-for="@Model.StartTime" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.EndTime">End Time</label>
+        <input asp-for="@Model.EndTime" placeholder="YYYY-MM-DD" disabled class="form-control" />
+        <span asp-validation-for="@Model.EndTime" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.beds">Beds</label>
+        <input asp-for="@Model.beds" disabled class="form-control" />
+        <span asp-validation-for="@Model.beds" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Delete Camp</button>
+
+</form>

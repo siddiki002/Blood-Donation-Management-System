@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Slot>
+@{
+    ViewData["Title"] = "History";
+    TempData["Id"] = TempData["Id"];
+    Layout = "~/Views/Shared/_DonorLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <h1 class="text-secondary">Appointments</h1>
+    </div>
+</div>
+
+
+<hr />
+
+@if(Model.Count() == 0){
+    <div class="row m-2">
+        <div class="col">
+            <h3 class="text-secondary">Donate Blood now and Save Lives</h3>
+        </div>
+    </div>
+}
+
+@foreach (var item in Model)
+{
+              <div class="card mb-4" style="width: 100%;">
+              <div class="card-body">
+                <h5 class="card-title text-decoration-underline">@Html.DisplayFor(modelItem => item.BloodCamp.Organization.Name)</h5>
+                <p class="card-text text-decoration-none">
+                        Address: @Html.DisplayFor(modelItem => item.BloodCamp.Organization.Address)<br>
+                        Area: @Html.DisplayFor(modelItem => item.BloodCamp.Area.Name)<br>
+                        City: @Html.DisplayFor(modelItem => item.BloodCamp.Area.City)<br>
+                        Province: @Html.DisplayFor(modelItem => item.BloodCamp.Area.Province)<br>
+                        Appointment: @item.Date.ToString("dd-MM-yyyy") @item.Time.TimeOfDay<br>
+
+                        @if(@item.CanDonate == "Yes"){
+                           <a class="btn btn-info my-3" style="width:150 px;" asp-controller="Donor" asp-action="Result" asp-route-id="@item.Id">
+                               Test report
+                           </a>
+                        }
+                        @if (@item.CanDonate == "No"){
+                            <p>No Blood Donated</p>
+                        }
+                </p>
+              </div>
+            </div>
+}

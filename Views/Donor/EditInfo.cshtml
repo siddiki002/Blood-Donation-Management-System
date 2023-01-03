@@ -1,0 +1,73 @@
+﻿@model Donor
+@{
+    ViewData["Title"] = "Index";
+    TempData["Id"] = Model.Id;
+    Layout = "~/Views/Shared/_DonorLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <h1 class="text-secondary">Edit Info</h1>
+    </div>
+</div>
+
+
+<hr />
+
+<form method="post">
+    <input type="number" class="form-control" asp-for="Id" style="display:none;"/>
+    <input type="text" class="form-control" asp-for="Cnic" style="display:none;"/>
+
+    <div>
+        <label asp-for="FirstName"></label>
+        <input type="text" class="form-control mb-3" asp-for="FirstName" />
+        <span asp-validation-for="FirstName"></span>
+    </div>
+
+    <div>
+        <label asp-for="LastName"></label>
+        <input type="text" class="form-control mb-3" asp-for="LastName" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+
+    <div>
+        <label asp-for="Email"></label>
+        <input type="email" class="form-control mb-3" asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+
+    <div>
+        <label asp-for="Password"></label>
+        <input type="password" class="form-control mb-3" asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+
+    <div>
+        <label asp-for="Address"></label>
+        <input type="text" class="form-control mb-3" asp-for="Address" />
+        <span asp-validation-for="Address"></span>
+    </div>
+
+    <div>
+        <label asp-for="Area"></label>
+        <input type="text" class="form-control mb-3" asp-for="Area.Name" />
+        <span asp-validation-for="Area"></span>
+    </div>
+
+    <div>
+        <label asp-for="Area.City"></label>
+        <input type="text" class="form-control mb-3" asp-for="Area.City" />
+        <span asp-validation-for="Area.City"></span>
+    </div>
+
+    <div>
+        <label asp-for="Area.Province"></label>
+        <input type="text" class="form-control mb-3" asp-for="Area.Province" />
+        <span asp-validation-for="Area.Province"></span>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary mt-3" style="width: 150px;">Update</button>
+    </div>
+</form>
+
